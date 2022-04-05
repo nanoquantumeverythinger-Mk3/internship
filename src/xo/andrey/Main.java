@@ -5,8 +5,11 @@ import xo.andrey.functions.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -52,6 +55,11 @@ public class Main {
         System.out.println(secondList);
         System.out.println(thirdList);
 
+        Map<String, MyClass> myClassMap = new HashMap<>();
+        thirdList.stream().peek(x -> myClassMap.put(x.hashCode()+"",x)).count();                    //ничего не делает
+        System.out.println(myClassMap);
+        thirdList.stream().filter(x -> true).peek(x -> myClassMap.put(x.hashCode()+"",x)).count();  //работает
+        System.out.println(myClassMap);
 
 /*
         Predicate<MyClass> stringLength3 = y -> y.getString().length() > 3;
